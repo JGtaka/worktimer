@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "top#index"
 
+  get "/tasks", to: "tasks#index"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
