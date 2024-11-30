@@ -1,2 +1,23 @@
 To do作成
-  <%= link_to "To do一覧", tasks_path %>
+<%= link_to "To do一覧", tasks_path %>
+<%= form_with model: @task do |form| %>
+  
+  <div>
+    <%= form.label :expired_at %><br>
+    <%= form.datetime_field :expired_at %>
+  </div>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
