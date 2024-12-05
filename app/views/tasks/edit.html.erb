@@ -5,18 +5,18 @@
     <%= form.label :expired_at %><br>
     <%= form.datetime_field :expired_at %>
   </div>
-  
+
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
   <div>
     <%= form.label :body %><br>
-    <%= form.text_field :body %>
+    <%= form.text_area :body %>  
   </div>
   
   <div>
-    <%= form.submit %>
+    <%= form.submit "投稿を更新", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' }  %>
   </div>
 <% end %>
 <%= link_to "To do一覧", tasks_path %>
