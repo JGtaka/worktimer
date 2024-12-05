@@ -13,6 +13,7 @@ taskページ
       <td><%= task.name %></td>
       <td><%= task.expired_at %></td>
       <td><a href="/tasks/<%= task.id %>">詳細</a></td>
+      <td><%= link_to "編集", edit_task_path(task) %></td>
     </tr>
   <%end%>  
 </table>
