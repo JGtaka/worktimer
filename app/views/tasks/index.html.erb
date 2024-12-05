@@ -12,6 +12,7 @@ taskページ
       <td><%= task.id %></td>
       <td><%= task.name %></td>
       <td><%= task.expired_at %></td>
+      <td><a href="/tasks/<%= task.id %>">詳細</a></td>
     </tr>
   <%end%>  
 </table>
