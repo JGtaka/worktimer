@@ -1,3 +1,17 @@
 taskページ
 <%= link_to "トップページ", root_path %>
 <%= link_to "作成", tasks_new_path %>
+<table>
+  <tr>
+   <th>№</th>
+   <th>タイトル</th>
+   <th>期限</th>
+  </tr> 
+  <% @task.each do |task| %>
+    <tr>
+      <td><%= task.id %></td>
+      <td><%= task.name %></td>
+      <td><%= task.expired_at %></td>
+    </tr>
+  <%end%>  
+</table>
