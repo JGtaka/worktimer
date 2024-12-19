@@ -30,6 +30,15 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_paramas)
+    redirect_to reques.referer
+    else
+      render :new
+    end
+  end
+
   private
   def task_params
     params.require(:task).permit(:expired_at, :body, :name)
