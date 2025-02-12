@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     p 'hoge4'
   end
 
-  def delete
+  def destroy
     @task = Task.find(params[:id])
     @task.destroy
   end
