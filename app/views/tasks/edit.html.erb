@@ -1,5 +1,5 @@
 <p>編集ページ</p>
-<%= form_with(model: @tasks, local: true) do |form| %>
+<%= form_with model:@task, url: task_path(@task) do |form| %>
 
   <div>
     <%= form.label :expired_at %><br>

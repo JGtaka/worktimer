@@ -31,17 +31,26 @@ class TasksController < ApplicationController
   end
 
   def update
+    p 'hoge1' 
     @task = Task.find(params[:id])
-    if @task.update(task_paramas)
-    redirect_to reques.referer
-    else
-      render :new
-    end
+    p 'hoge2'
+     @task.update(task_params)
+    p 'hoge3'
+    redirect_to task_path 
+    p 'hoge4'
+  end
+
+  def delete
+    @task = Task.find(params[:id])
+    @task.destroy
   end
 
   private
+  
   def task_params
-    params.require(:task).permit(:expired_at, :body, :name)
+    params.require(:task).permit(:expired_at, :name, :body)
   end
+
+  
 
 end
