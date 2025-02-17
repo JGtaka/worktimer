@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :set_post, only: [:edit, :show]
 
   def index
-    @task = Task.all
+    @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -16,28 +16,21 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    p @task
     @task.user_id = current_user.id
-    p @task
     if @task.save
-     redirect_to tasks_path
+     redirect_to task_path(@task)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    p 'hoge1' 
     @task = Task.find(params[:id])
-    p 'hoge2'
      @task.update(task_params)
-    p 'hoge3'
     redirect_to task_path 
-    p 'hoge4'
   end
 
   def destroy
@@ -51,6 +44,8 @@ class TasksController < ApplicationController
     params.require(:task).permit(:expired_at, :name, :body)
   end
 
-  
+  def set_post
+    @task = Task.find(params[:id])
+  end
 
 end

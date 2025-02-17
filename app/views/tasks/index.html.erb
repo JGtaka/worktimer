@@ -7,12 +7,12 @@ taskページ
    <th>タイトル</th>
    <th>期限</th>
   </tr> 
-  <% @task.each do |task| %>
+  <% @tasks.each do |task| %>
     <tr>
       <td><%= task.id %></td>
       <td><%= task.name %></td>
       <td><%= task.expired_at %></td>
-      <td><a href="/tasks/<%= task.id %>">詳細</a></td>
+      <td><%= link_to "詳細" , task_path(task)%></td>
       <td><%= link_to "編集", edit_task_path(task) %></td>
       <td><%= link_to  "削除" ,  task_path(task) , data:{turbo_method: :delete} %></td>
     </tr>
