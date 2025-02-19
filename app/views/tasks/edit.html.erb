@@ -9,7 +9,15 @@
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
+    <% if @task.errors.full_messages_for(:name).any? %>
+    <ul>
+      <% @task.errors.full_messages_for(:name).each do |message| %>
+      <li><%= message %>  
+      <% end %>
+    </ul>
+    <% end %>
   </div>
+  
   <div>
     <%= form.label :body %><br>
     <%= form.text_area :body %>  
