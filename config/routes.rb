@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :tasks
   root "top#index"
 
   if Rails.env.development?
