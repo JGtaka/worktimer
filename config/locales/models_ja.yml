@@ -5,3 +5,7 @@ ja:
         expired_at: 期限
         name: タイトル
         body: 内容
+      user:
+        email:メールアドレス
+
+
