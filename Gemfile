@@ -75,3 +75,6 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
