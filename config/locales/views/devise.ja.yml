@@ -30,6 +30,7 @@ ja:
         instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
         message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
     passwords:
+      send_instructions: "パスワードの再設定用メールを送信しました。"
       edit:
         change_my_password: "パスワードを変更する"
         change_your_password: "パスワードを変更"
