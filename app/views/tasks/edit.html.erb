@@ -4,7 +4,7 @@
   <div>
     <%= form.label :expired_at %><br>
     <%= form.datetime_field :expired_at %>
-    <% if @task.errors.full_messages_for(:expired_at).any? %>
+    <% if @task.errors.any? %>
     <ul>
       <% @task.errors.full_messages_for(:expired_at).each do |message| %>
       <li><%= message %>  
@@ -16,7 +16,7 @@
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
-    <% if @task.errors.full_messages_for(:name).any? %>
+    <% if @task.errors.any? %>
     <ul>
       <% @task.errors.full_messages_for(:name).each do |message| %>
       <li><%= message %>  
