@@ -4,6 +4,6 @@ class Task < ApplicationRecord
 
   validates :expired_at, presence: true
   validates :user_id, presence: true
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 20 } 
 
 end
