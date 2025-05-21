@@ -20,3 +20,29 @@ taskページ
     </tr>
   <%end%>  
 </table>
+
+</table>
+<!-- この下に追加します -->
+
+<h2>共有されたタスク</h2>
+<table>
+  <tr>
+    <th>№</th>
+    <th>タイトル</th>
+    <th>期限</th>
+    <th>優先度</th>
+    <th>作成者</th>
+    <th>詳細</th>
+  </tr>
+  <% @shared_tasks&.each do |task| %>
+    <tr>
+      <td><%= task.id %></td>
+      <td><%= task.name %></td>
+      <td><%= task.expired_at %></td>
+      <td><%= task.priority %></td>
+      <td><%= task.user.email %></td>
+      <td><%= link_to "詳細", task_path(task) %></td>
+      <td><%= link_to "編集", edit_task_path(task) %></td>
+    </tr>
+  <% end %>
+</table>

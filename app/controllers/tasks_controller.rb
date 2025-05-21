@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   def index
     #@tasks = Task.all
     @tasks = current_user.tasks.ordered_by_priority
+    @shared_tasks = current_user.shared_tasks.ordered_by_priority
   end
 
   def show
@@ -48,6 +49,10 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def shared
+   @tasks = current_user.shared_tasks
   end
 
 end
