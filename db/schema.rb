@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_21_104222) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_30_103335) do
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "message"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "task_shares", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "task_id", null: false
@@ -45,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_21_104222) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "users"
   add_foreign_key "task_shares", "tasks"
   add_foreign_key "task_shares", "users"
   add_foreign_key "tasks", "users"
