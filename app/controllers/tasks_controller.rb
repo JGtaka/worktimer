@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :show, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    #@tasks = Task.all
+    @tasks = current_user.tasks.ordered_by_priority
   end
 
   def show
@@ -42,7 +43,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:expired_at, :name, :body)
+    params.require(:task).permit(:expired_at, :name, :body, :priority)
   end
 
   def set_task

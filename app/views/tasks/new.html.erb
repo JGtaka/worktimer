@@ -34,4 +34,10 @@ To do作成
   <div>
     <%= form.submit %>
   </div>
-<% end %>
+
+  <div class="field">
+   <%= form.label :priority, "優先度" %>
+    <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize,p] } %>
+  </div>
+
+  <% end %>
