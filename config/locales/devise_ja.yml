@@ -69,6 +69,8 @@ ja:
       new:
         sign_up: "アカウント登録"
     sessions:
+      user:
+        sessions.admin.invalid: "メールアドレスまたはパスワードが正しくありません"
       new:
         sign_in: "ログイン"
     shared:
@@ -83,3 +85,13 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+        ja:
+  errors:
+    messages:
+      not_saved: "保存できませんでした。%{count} 件のエラーがあります。"
+  devise:
+    sessions:
+      user:
+        invalid: "メールアドレスまたはパスワードが正しくありません"
+    registrations:
+      signed_up: "アカウント登録が完了しました"
