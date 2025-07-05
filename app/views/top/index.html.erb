@@ -1,19 +1,71 @@
-トップページ
-
-<% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-  <%= current_user.email %>
-  <%= link_to "To do一覧", tasks_path %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>  
-
-<h2>通知一覧</h2>
-<div class="notifications-container">
-  <% @notifications.each do |notification| %>
-    <div class="notification-box <%= 'unread' unless notification.read %>">
-      <div class="notification-message"><%= notification.message %></div>
-      <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+<% content_for :page_stylesheet do %>
+  <%= stylesheet_link_tag "top", media: "all" %>
+<% end %>
+<head>
+<nav class="navbar navbar-expand-lg ">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#">WorkTimer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <% if user_signed_in? %>
+      <a class="navbar-brand" href="#"><%= current_user.email %></a>
+    <% else %>
+      <a class="navbar-brand" href="#">WorkTimer</a>
+    <% end %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<%= root_path %>">マイページ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">サービスについて</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+      </span>
     </div>
-  <% end %>
+  </div>
+</nav>
+</head>
+top>マイページ
+<boday>
+<!-- サイドバー付きレイアウト例 -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- サイドバー -->
+    <nav class="col-md-2 d-none d-md-block custom-sidebar py-3
+    ">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="sidebar-title">タスク一覧</li>
+          <li class="nav-item mb-2">
+            <%= link_to "To do一覧", tasks_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item mb-2">
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link text-danger" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content col-md-10 ms-sm-auto px-md-4 mt-4 ms-3">
+      <!-- ここにページごとの内容を記述 -->
+      <h2>通知一覧</h2>
+      <div class="notifications-container">
+        <% @notifications.each do |notification| %>
+          <div class="notification-box <%= 'unread' unless notification.read %>">
+            <div class="notification-message"><%= notification.message %></div>
+            <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
 </div>
+
+
