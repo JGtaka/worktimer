@@ -1,0 +1,43 @@
+.navbar {
+  background-color: #67c6ec !important;
+}
+
+.navbar .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+}
+
+.custom-sidebar {
+  background-color: #fff !important;
+  border-radius: 20px; /* 角を丸くする */
+  color: #111 !important;  // サイドバー内の通常テキストも黒に
+  /* 必要に応じて内側の余白も追加できます */
+  padding: 1rem;
+}
+
+.custom-sidebar .nav-link {
+  color: #111 !important;         // 文字色を黒に
+  text-align: center;             // 中央寄せ
+  font-size: 1.2rem;              // 文字サイズを大きく
+  font-weight: bold;              // 太字（お好みで）
+}
+
+.sidebar-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+.main-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-left: 24px; /* 必要なら調整 */
+}
+
