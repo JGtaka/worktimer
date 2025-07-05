@@ -127,3 +127,25 @@
   font-size: 12px;
   color: #666;
 }
+
+.app-header {
+  background: linear-gradient(to right,#2563eb, #f0f8ff);
+  color: white;
+  padding: 16px 0;
+  margin-bottom: 24px;
+}
+.app-footer {
+  background: #f0f8ff;
+  color: #666;
+  padding: 16px 0;
+  margin-top: 32px;
+  border-top: 1px solid #e0e0e0;
+}
+.footer-link {
+  margin-left: 16px;
+  color: #2563eb;
+  text-decoration: none;
+}
+.footer-link:hover {
+  text-decoration: underline;
+}

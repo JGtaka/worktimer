@@ -1,5 +1,27 @@
-トップページ
 
+<head>
+    <title>Worktimer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  </head>
+
+  <body>
+    <div class="app-layout">
+      <!-- ヘッダー -->
+      <header class="app-header">
+        <div class="container">
+          <div class="header-content">
+            <h1 class="app-title">
+              <i class="fas fa-clock"></i>
+              Worktimer
+            </h1>
 <% if user_signed_in? %>
   <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
   <%= current_user.email %>
@@ -16,4 +38,17 @@
       <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d %H:%M") %></div>
     </div>
   <% end %>
+</div>
+
+<footer class="app-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">© 2025 Worktimer. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">お問い合わせ</a>
+          <a href="#" class="footer-link">公式X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
