@@ -7,3 +7,13 @@
 <% else %>
   <%= link_to 'ログイン', new_user_session_path %>
 <% end %>  
+
+<h2>通知一覧</h2>
+<div class="notifications-container">
+  <% @notifications.each do |notification| %>
+    <div class="notification-box <%= 'unread' unless notification.read %>">
+      <div class="notification-message"><%= notification.message %></div>
+      <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+    </div>
+  <% end %>
+</div>
