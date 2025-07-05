@@ -83,3 +83,10 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+        ja:
+  errors:
+    messages:
+      not_saved: "保存できませんでした。%{count} 件のエラーがあります。"
+  devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが入力されていないか、正しくありません"
