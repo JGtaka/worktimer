@@ -29,13 +29,18 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">サービスについて</a>
         </li>
-        <li class="nav-item">
         <% if user_signed_in? %>
-          <a class="nav-link" href="<%= root_path %>">マイページ</a>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= root_path %>">マイページ</a>
+          </li>
         <% else %>
-          <a class="nav-link" href="<%= new_user_session_path %>">ログイン</a>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">新規登録</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">ログイン</a>
+          </li>
         <% end %>
-        </li>
       </ul>
       <span class="navbar-text">
       </span>
