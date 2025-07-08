@@ -2,39 +2,39 @@
   <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
 <% end %>
 
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
-  <h2>ログイン </h2>
+<div class="sessions-center-form">
+  <h2>ログイン</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { style: "width: 300px;" }) do |f| %>
-    <div class="field" style="margin-bottom: 1rem;">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
       <%= f.label :メールアドレス %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; height: 44px; font-size: 1rem; border-radius: 4px; border: 1px solid #ccc; padding: 0.5em;" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field" style="margin-bottom: 1rem;">
+    <div class="field">
       <%= f.label :パスワード %><br />
-      <%= f.password_field :password, autocomplete: "current-password", style: "width: 100%; height: 44px; font-size: 1rem; border-radius: 4px; border: 1px solid #ccc; padding: 0.5em;" %>
+      <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+      <div class="field remember">
         <%= f.check_box :remember_me %>
-        <%= f.label :記憶する, style: "margin-left: 0.5em;" %>
+        <%= f.label :記憶する %>
       </div>
     <% end %>
 
-    <div class="actions" style="margin-bottom: 1rem;">
-      <%= f.submit "ログイン", style: "width: 100%; height: 44px; background: #3498db; color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;" %>
+    <div class="actions">
+      <%= f.submit "ログイン" %>
     </div>
   <% end %>
 
-  <form action="<%= new_user_registration_path %>" method="get" style="margin-bottom: 1rem; width: 300px;">
-    <button type="submit" style="width: 100%; height: 44px; background: #737373; color: #fff; border: none; padding: 0.5em 1.5em; border-radius: 4px; font-size: 1rem; cursor: pointer;">
-      新規登録
-    </button>
-  </form>
+  <div class="register-btn">
+    <form action="<%= new_user_registration_path %>" method="get">
+      <button type="submit">新規登録</button>
+    </form>
+  </div>
 
-  <div style="width: 300px; text-align: center;">
+  <div class="forgot-link">
     <%= link_to 'パスワードを忘れたら', new_user_password_path %>
   </div>
 </div>
