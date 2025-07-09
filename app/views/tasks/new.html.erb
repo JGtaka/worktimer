@@ -1,54 +1,57 @@
-To do作成
-<%= link_to "To do一覧", tasks_path %>
-<%= form_with model: @task do |form| %>
-  
-  <div>
-    <%= form.label :expired_at %><br>
-    <%= form.datetime_field :expired_at %>
-     <% if @task.errors.full_messages_for(:expired_at).any? %>
-    <ul>
-      <% @task.errors.full_messages_for(:expired_at).each do |message| %>
-      <li><%= message %>  
+<% content_for :breadcrumbs do %>
+  <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">タスク一覧</li>
+  <li class="breadcrumb-item active" aria-current="page">タスク作成</li>
+<% end %>
+<div class="tasks-center-form">
+  <h2>新規作成</h2>
+  <%= link_to "To do一覧", tasks_path %>
+  <%= form_with model: @task do |form| %>
+
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+      <% if @task.errors.full_messages_for(:name).any? %>
+        <ul>
+          <% @task.errors.full_messages_for(:name).each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-    <% end %>
-  </div>
+    </div>
 
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-    <% if @task.errors.full_messages_for(:name).any? %>
-    <ul>
-      <% @task.errors.full_messages_for(:name).each do |message| %>
-      <li><%= message %>  
+    <div>
+      <%= form.label :expired_at %><br>
+      <%= form.datetime_field :expired_at %>
+      <% if @task.errors.full_messages_for(:expired_at).any? %>
+        <ul>
+          <% @task.errors.full_messages_for(:expired_at).each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
+    </div>
+    
+    <div>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </div>
+    <div>
+      <%= form.label :priority, "優先度" %>
+      <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize,p] } %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+    <% if @task.persisted? %>
+      <div>
+        <%= form_with url: task_task_shares_path(@task), method: :post do |f| %>
+          <%= collection_select(:task_share, :user_id, User.where.not(id: current_user.id), :id, :name) %>
+          <%= f.check_box :can_edit_priority %> 優先度を編集可
+          <%= f.check_box :can_edit_comment %> コメントを編集可
+          <%= f.submit "共有する" %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
-
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-
-  <div class="field">
-   <%= form.label :priority, "優先度" %>
-    <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize,p] } %>
-  </div>
-  
-  <% if @task.persisted? %>
-   <div>
-   <%= form_with url: task_task_shares_path(@task), method: :post do |f| %>
-    <%= collection_select(:task_share, :user_id, User.where.not(id: current_user.id), :id, :name) %>
-    <%= f.check_box :can_edit_priority %> 優先度を編集可
-    <%= f.check_box :can_edit_comment %> コメントを編集可
-    <%= f.submit "共有する" %>
-    <% end %>
-  </div>
   <% end %>
-
-  <% end %>
+</div>
