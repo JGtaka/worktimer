@@ -62,8 +62,14 @@
     <div>
       <%= form.submit "投稿を更新" %>
     </div>
+
+    <div class="form-buttons">
+      <%= link_to "キャンセル", tasks_path, class: "btn btn-secondary ms-2" %>
+    </div>
+
   <% end %>
 
+    
   <% if @task.user == current_user %>
     <div>
       <%= form_with model: TaskShare.new, url: task_task_shares_path(@task), method: :post, local: true do |f| %>
