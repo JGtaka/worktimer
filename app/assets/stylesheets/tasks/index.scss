@@ -1,0 +1,26 @@
+.task-list-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-list-center table {
+  margin-bottom: 9em;
+  width: auto;
+  text-align: center;
+  border-collapse: collapse; /* 枠線を重ねる */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.task-list-center th,
+.task-list-center td {
+  border: 1px solid #ccc; /* 枠線 */
+  padding: 0.7em 1em;
+  background: #fff;
+}
+
+.task-list-center th {
+  background: #f5f5f5;
+  font-weight: bold;
+}
