@@ -13,6 +13,7 @@
   </head>
 
   <body>
+
   <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
       <a class="navbar-brand" href="#">WorkTimer</a>
@@ -71,6 +72,13 @@
       <div class="text-muted small mt-2">&copy; <%= Time.current.year %> WorkTimer</div>
     </footer>
   </body>
+
+
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
 
   </body>
 
