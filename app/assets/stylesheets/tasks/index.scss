@@ -27,5 +27,14 @@
 
 .pagination {
   margin-top: 0.1em; /* 距離を縮める */
-  margin-bottom:3em;
+  margin-bottom: 3em;
+}
+
+.deadline-danger {
+  background-color: #ffe5e5 !important;
+  color: #d9534f !important;
+}
+.deadline-warning {
+  background-color: #fffbe5 !important;
+  color: #f0ad4e !important;
 }

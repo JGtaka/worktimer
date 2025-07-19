@@ -42,7 +42,16 @@
         <th> </th>
       </tr> 
       <% @tasks.each do |task| %>
-        <tr>
+        <% row_class =
+          if task.expired_at && task.expired_at < Time.current + 1.day
+            "deadline-danger"
+          elsif task.expired_at && task.expired_at < Time.current + 3.days
+            "deadline-warning"
+          else
+            ""
+          end
+        %>
+        <tr class="<%= row_class %>">
           <td><%= task.name %></td>
           <td><%= task.expired_at %></td>
           <td><%= task.priority %></td>
@@ -68,7 +77,16 @@
         <th></th>
       </tr>
       <% @shared_tasks&.each do |task| %>
-        <tr>
+        <% row_class =
+          if task.expired_at && task.expired_at < Time.current + 1.day
+            "deadline-danger"
+          elsif task.expired_at && task.expired_at < Time.current + 3.days
+            "deadline-warning"
+          else
+            ""
+          end
+        %>
+        <tr class="<%= row_class %>">
           <td><%= task.name %></td>
           <td><%= task.expired_at %></td>
           <td><%= task.priority %></td>
