@@ -6,7 +6,7 @@
 }
 
 .task-list-center table {
-  margin-bottom: 9em;
+  margin-bottom: 3em;
   width: auto;
   text-align: center;
   border-collapse: collapse; /* 枠線を重ねる */
@@ -23,4 +23,9 @@
 .task-list-center th {
   background: #f5f5f5;
   font-weight: bold;
+}
+
+.pagination {
+  margin-top: 0.1em; /* 距離を縮める */
+  margin-bottom:3em;
 }

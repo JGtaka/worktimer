@@ -1,10 +1,7 @@
 <% content_for :breadcrumbs do %>
   <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
-  <li class="breadcrumb-item active" aria-current="page">taskページ</li>
+  <li class="breadcrumb-item active" aria-current="page">To do一覧</li>
 <% end %>
-taskページ
-<%= link_to "トップページ", root_path %>
-<%= link_to "作成", new_task_path %>
 
 <div class="edit-form-buttons">
    <%= link_to "タスク作成", new_task_path, class: "btn btn-secondary ms-2" %>
@@ -56,6 +53,10 @@ taskページ
       <%end%>  
     </table>
 
+    <div class="pagination">
+      <%= paginate @tasks, param_name: :tasks_page %>
+    </div>
+
     <h2>共有されたタスク</h2>
     <table>
       <tr>
@@ -77,5 +78,8 @@ taskページ
         </tr>
       <% end %>
     </table>
+    <%= paginate @shared_tasks, param_name: :shared_tasks_page %>
   </div>
 </main>
+
+

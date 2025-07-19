@@ -4,9 +4,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :show, :update, :destroy]
 
   def index
-    #@tasks = Task.all
-    @tasks = current_user.tasks.ordered_by_priority
-    @shared_tasks = current_user.shared_tasks.ordered_by_priority
+    @tasks = current_user.tasks.ordered_by_priority.page(params[:tasks_page]).per(5)
+    @shared_tasks = current_user.shared_tasks.ordered_by_priority.page(params[:shared_tasks_page]).per(5)
   end
 
   def show
