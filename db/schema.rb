@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_30_055853) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_30_103335) do
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "message"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "task_shares", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "task_id", null: false
+    t.boolean "can_edit_priority"
+    t.boolean "can_edit_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_shares_on_task_id"
+    t.index ["user_id"], name: "index_task_shares_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", null: false
@@ -18,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_30_055853) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "priority"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -33,5 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_30_055853) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "users"
+  add_foreign_key "task_shares", "tasks"
+  add_foreign_key "task_shares", "users"
   add_foreign_key "tasks", "users"
 end

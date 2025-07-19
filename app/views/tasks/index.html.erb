@@ -1,20 +1,101 @@
-taskページ
-<%= link_to "トップページ", root_path %>
-<%= link_to "作成", new_task_path %>
-<table>
-  <tr>
-   <th>№</th>
-   <th>タイトル</th>
-   <th>期限</th>
-  </tr> 
-  <% @tasks.each do |task| %>
-    <tr>
-      <td><%= task.id %></td>
-      <td><%= task.name %></td>
-      <td><%= task.expired_at %></td>
-      <td><%= link_to "詳細" , task_path(task)%></td>
-      <td><%= link_to "編集", edit_task_path(task) %></td>
-      <td><%= link_to  "削除" ,  task_path(task) , data:{turbo_method: :delete, turbo_confirm: "本当に削除しますか"} %></td>
-    </tr>
-  <%end%>  
-</table>
+<% content_for :breadcrumbs do %>
+  <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">To do一覧</li>
+<% end %>
+
+<div class="edit-form-buttons">
+   <%= link_to "タスク作成", new_task_path, class: "btn btn-secondary ms-2" %>
+</div>
+
+<div class="container-fluid">
+  <button class="sidebar-toggle" type="button" aria-label="メニューを開く">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="row">
+    <!-- サイドバー -->
+    <nav class="col-md-2 custom-sidebar py-3" id="sidebar">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="sidebar-title">タスク一覧</li>
+          <li class="nav-item mb-2">
+            <%= link_to "To do一覧", tasks_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item mb-2">
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link text-danger" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<main class="col-md-8">
+  <div class="task-list-center">
+  <h1>自分のタスク</h1>
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>期限</th>
+        <th>優先度</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr> 
+      <% @tasks.each do |task| %>
+        <% row_class =
+          if task.expired_at && task.expired_at < Time.current + 1.day
+            "deadline-danger"
+          elsif task.expired_at && task.expired_at < Time.current + 3.days
+            "deadline-warning"
+          else
+            ""
+          end
+        %>
+        <tr class="<%= row_class %>">
+          <td><%= task.name %></td>
+          <td><%= task.expired_at %></td>
+          <td><%= task.priority %></td>
+          <td><%= link_to "詳細" , task_path(task)%></td>
+          <td><%= link_to "編集", edit_task_path(task) %></td>
+          <td><%= link_to  "削除" ,  task_path(task) , data:  {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %></td>
+        </tr>
+      <%end%>  
+    </table>
+
+    <div class="pagination">
+      <%= paginate @tasks, param_name: :tasks_page %>
+    </div>
+
+    <h2>共有されたタスク</h2>
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>期限</th>
+        <th>優先度</th>
+        <th>作成者</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @shared_tasks&.each do |task| %>
+        <% row_class =
+          if task.expired_at && task.expired_at < Time.current + 1.day
+            "deadline-danger"
+          elsif task.expired_at && task.expired_at < Time.current + 3.days
+            "deadline-warning"
+          else
+            ""
+          end
+        %>
+        <tr class="<%= row_class %>">
+          <td><%= task.name %></td>
+          <td><%= task.expired_at %></td>
+          <td><%= task.priority %></td>
+          <td><%= task.user.email %></td>
+          <td><%= link_to "詳細", task_path(task) %></td>
+          <td><%= link_to "編集", edit_task_path(task) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @shared_tasks, param_name: :shared_tasks_page %>
+  </div>
+</main>
