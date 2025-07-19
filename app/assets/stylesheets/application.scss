@@ -1,0 +1,24 @@
+@import "bootstrap";
+@import "users/passwords";
+@import "users/new";
+@import "users/session";
+@import "tasks/create";
+@import "tasks/sidber";
+@import "tasks/edit";
+@import "tasks/show";
+
+body {
+  background-color: #EFF6FF !important;
+}
+
+.navbar {
+  background-color: #67c6ec !important;
+}
+
+.navbar .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+}
