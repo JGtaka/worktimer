@@ -1,11 +1,11 @@
 <% content_for :breadcrumbs do %>
   <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
   <li class="breadcrumb-item active" aria-current="page">To do一覧ページ</li>
-  <li class="breadcrumb-item active" aria-current="page">詳細ページ</li>
+  <li class="breadcrumb-item active" aria-current="page">詳細</li>
 <% end %>
 
 <div class="edit-form-buttons">
-   <%= link_to "詳細", edit_task_path, class: "btn btn-secondary ms-2" %>
+   <%= link_to "編集", edit_task_path, class: "btn btn-secondary ms-2" %>
 </div>
 
 <div class="container-fluid">
