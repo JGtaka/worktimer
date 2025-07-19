@@ -1,5 +1,10 @@
-<p>編集ページ</p>
 <%= form_with model:@task, url: task_path(@task) do |form| %>
+
+  <% content_for :breadcrumbs do %>
+  <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+  <li class="breadcrumb-item"><a href="<%= tasks_path %>">タスク一覧</a></li>
+  <li class="breadcrumb-item active" aria-current="page">編集</li>
+<% end %>
 
   <div class="container-fluid">
   <button class="sidebar-toggle" type="button" aria-label="メニューを開く">
