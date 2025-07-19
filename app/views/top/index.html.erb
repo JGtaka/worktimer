@@ -6,7 +6,11 @@
 </head>
 
 <% content_for :breadcrumbs do %>
-  <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+  <% if user_signed_in? %>
+    <li class="breadcrumb-item active" aria-current="page">マイページ</li>
+  <% else %>
+    <li class="breadcrumb-item"><a href="<%= root_path %>">HOME</a></li>
+  <% end %>
 <% end %>
 
 <% if user_signed_in? %>
