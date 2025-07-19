@@ -29,9 +29,16 @@
     <%= form.label :body %><br>
     <%= form.text_area :body %>  
   </div>
+
+  <div class="field">
+   <%= form.label :priority, "優先度" %>
+   <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize, p] } %>
+  </div>
   
   <div>
     <%= form.submit "投稿を更新" %>
   </div>
+
+
 <% end %>
 <%= link_to "To do一覧", tasks_path %>
