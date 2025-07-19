@@ -1,9 +1,52 @@
-トップページ
+<% content_for :page_stylesheet do %>
+  <%= stylesheet_link_tag "top", media: "all" %>
+<% end %>
+<head>
+
+</head>
+
+<% content_for :breadcrumbs do %>
+  <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+<% end %>
 
 <% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-  <%= current_user.email %>
-  <%= link_to "To do一覧", tasks_path %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>  
+ <div class="container-fluid">
+  <button class="sidebar-toggle" type="button" aria-label="メニューを開く">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="row">
+    <!-- サイドバー -->
+    <nav class="col-md-2 custom-sidebar py-3" id="sidebar">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="sidebar-title">タスク一覧</li>
+          <li class="nav-item mb-2">
+            <%= link_to "To do一覧", tasks_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item mb-2">
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link text-danger" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+      <!-- メインコンテンツ -->
+      <main class="main-content col-md-8 mx-auto  px-md-4 mt-8 ">
+        <!-- ここにページごとの内容を記述 -->
+        <h2>通知一覧</h2>
+        <div class="notifications-container">
+          <% @notifications.each do |notification| %>
+            <div class="notification-box <%= 'unread' unless notification.read %>">
+              <div class="notification-message"><%= notification.message %></div>
+              <div class="notification-date"><%= notification.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+            </div>
+          <% end %>
+        </div>
+      </main>
+    </div>
+  </div>
+<% end %>
+
+
