@@ -29,9 +29,25 @@
     <%= form.label :body %><br>
     <%= form.text_area :body %>  
   </div>
+
+  <div class="field">
+   <%= form.label :priority, "優先度" %>
+   <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize, p] } %>
+  </div>
   
   <div>
     <%= form.submit "投稿を更新" %>
   </div>
+<% end %>
+
+<% if @task.user == current_user %>
+ <div>
+  <%= form_with model: TaskShare.new, url: task_task_shares_path(@task), method: :post, local: true do |f| %>
+  <%= f.collection_select :user_id, User.where.not(id: current_user.id), :id, :email %>
+  <%= f.check_box :can_edit_priority %> 優先度を編集可
+  <%= f.check_box :can_edit_comment %> コメントを編集可
+  <%= f.submit "共有する" %>
+  <% end %>
+ </div>
 <% end %>
 <%= link_to "To do一覧", tasks_path %>
