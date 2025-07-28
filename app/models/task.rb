@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
 
   belongs_to :user
+  has_many :task_shares, dependent: :destroy
+  has_many :shared_users, through: :task_shares, source: :user
 
   validates :expired_at, presence: true
   validates :user_id, presence: true
