@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :show, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    #@tasks = Task.all
+    @tasks = current_user.tasks.ordered_by_priority
   end
 
   def show
@@ -12,6 +13,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+  @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def create
@@ -25,6 +27,8 @@ class TasksController < ApplicationController
   end
 
   def edit
+     @task = Task.find(params[:id])
+     @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def update
@@ -42,7 +46,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:expired_at, :name, :body)
+    params.require(:task).permit(:expired_at, :name, :body, :priority)
   end
 
   def set_task
