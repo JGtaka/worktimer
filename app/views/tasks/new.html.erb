@@ -37,7 +37,7 @@ To do作成
 
   <div class="field">
    <%= form.label :priority, "優先度" %>
-    <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize,p] } %>
+   <%= form.select :priority, @priority_options %>
   </div>
 
   <% end %>
