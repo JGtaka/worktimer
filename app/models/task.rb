@@ -14,4 +14,6 @@ class Task < ApplicationRecord
   # 優先度で並び替えるスコープ
   scope :ordered_by_priority, -> { order(priority: :desc,expired_at: :asc) }
 
+  accepts_nested_attributes_for :task_shares
+
 end
