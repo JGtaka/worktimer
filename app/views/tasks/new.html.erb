@@ -43,7 +43,7 @@ To do作成
   
    <div>
    <%= form.fields_for :task_shares do |f| %>
-    <%= f.collection_select :user_id, User.where.not(id: current_user.id), :id, :email %>
+    <%= f.collection_select :user_id, @shareable_users, :id, :email %>
     <%= f.check_box :can_edit_priority %> 優先度を編集可
     <%= f.check_box :can_edit_comment %> コメントを編集可
    <% end %>

@@ -14,6 +14,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @task.task_shares.build
+    @shareable_users = User.where.not(id: current_user.id)
   end
 
   def create
@@ -26,11 +27,13 @@ class TasksController < ApplicationController
     end
       redirect_to task_path(@task)
     else
+      @shareable_users = User.where.not(id: current_user.id)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @shareable_users = User.where.not(id: current_user.id)
   end
 
   def update
