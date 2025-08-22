@@ -15,6 +15,7 @@ class TasksController < ApplicationController
     @task = Task.new
     @task.task_shares.build
     @shareable_users = User.where.not(id: current_user.id)
+    @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def create
@@ -33,7 +34,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @shareable_users = User.where.not(id: current_user.id)
+     @shareable_users = User.where.not(id: current_user.id)
+     @task = Task.find(params[:id])
+     @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def update
