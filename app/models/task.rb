@@ -6,7 +6,7 @@ class Task < ApplicationRecord
 
   validates :expired_at, presence: true
   validates :user_id, presence: true
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 20 } 
 
   # 優先度の定義
   enum priority: { low: 0, medium: 1, high: 2 }

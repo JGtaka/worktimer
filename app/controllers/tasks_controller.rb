@@ -34,6 +34,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
      @shareable_users = User.where.not(id: current_user.id)
      @task = Task.find(params[:id])
      @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }

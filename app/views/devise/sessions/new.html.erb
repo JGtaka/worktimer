@@ -1,0 +1,44 @@
+<h2>ログイン</h2>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<%= form_with scope: :user, url: session_path(:user), local: true, id: "login_form" do |f| %>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email, autofocus: true, id: "user_email" %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password, id: "user_password" %>
+  </div>
+
+  <div>
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    const form = document.getElementById("login_form");
+    if (form) {
+      form.addEventListener("submit", function(e) {
+        const email = document.getElementById("user_email").value.trim();
+        const password = document.getElementById("user_password").value.trim();
+        const errors = [];
+
+        if (!email) errors.push("メールアドレスを入力してください。");
+        if (!password) errors.push("パスワードを入力してください。");
+
+        if (errors.length > 0) {
+          e.preventDefault();
+          alert(errors.join("\n"));
+        }
+      });
+    }
+  });
+</script>
+
+<%= render "devise/shared/links" %>

@@ -5,6 +5,11 @@ class TaskSharesController < ApplicationController
   def create
     @task_share = @task.task_shares.new(task_share_params)
     if @task_share.save
+    Notification.create!(
+       user: @task_share.user,
+      message: "タスク「#{@task.name}」が共有されました",
+      read: false
+    )
       redirect_to task_path(@task), notice: "タスクを共有しました"
     else
       redirect_to task_path(@task), alert: "共有に失敗しました"

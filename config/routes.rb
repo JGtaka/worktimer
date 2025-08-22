@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :tasks do
     resources :task_shares, only: [:create]
   end
+
+  resources :notifications, only: [:index]
+  
   root "top#index"
 
   if Rails.env.developent?
