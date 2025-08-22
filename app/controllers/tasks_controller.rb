@@ -14,6 +14,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def create
@@ -27,6 +28,8 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
+     @priority_options = Task.priorities.keys.map { |p| [p.humanize, p] }
   end
 
   def update
