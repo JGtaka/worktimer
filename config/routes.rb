@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'task_shares/create'
+  get 'task_shares/destroy'
+  get 'tasks/shared'
   devise_for :users
 
-  resources :tasks
+  resources :tasks do
+    resources :task_shares, only: [:create]
+  end
   root "top#index"
 
-  if Rails.env.development?
+  if Rails.env.developent?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 

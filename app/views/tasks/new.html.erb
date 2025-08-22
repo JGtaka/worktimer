@@ -39,5 +39,13 @@ To do作成
    <%= form.label :priority, "優先度" %>
    <%= form.select :priority, @priority_options %>
   </div>
-
-  <% end %>
+  
+  
+   <div>
+   <%= form.fields_for :task_shares do |f| %>
+    <%= f.collection_select :user_id, @shareable_users, :id, :email %>
+    <%= f.check_box :can_edit_priority %> 優先度を編集可
+    <%= f.check_box :can_edit_comment %> コメントを編集可
+   <% end %>
+  </div>
+ <% end %>
