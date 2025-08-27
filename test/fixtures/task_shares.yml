@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  task: one
+  can_edit_priority: false
+  can_edit_comment: false
+
+two:
+  user: two
+  task: two
+  can_edit_priority: false
+  can_edit_comment: false

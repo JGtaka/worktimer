@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tasks
-  
+  has_many :task_shares
+  has_many :shared_tasks, through: :task_shares, source: :task
+  has_many :notifications
 end

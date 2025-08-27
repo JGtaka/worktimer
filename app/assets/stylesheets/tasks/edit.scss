@@ -1,0 +1,56 @@
+.tasks-center-form h2 {
+  width: 350px;
+  box-sizing: border-box;
+  text-align: center; // 追加：中央寄せ
+  margin: 0 auto 1rem auto; // 追加：上下の余白と中央寄せ
+}
+
+.tasks-center-form h2,
+.tasks-center-form form,
+.tasks-center-form .field,
+.tasks-center-form div,
+.tasks-center-form input,
+.tasks-center-form textarea,
+.tasks-center-form select,
+.tasks-center-form button,
+.tasks-center-form input[type="submit"] {
+  width: 350px;
+  box-sizing: border-box;
+}
+
+.tasks-center-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.tasks-center-form form {
+  width: 350px;
+}
+
+.tasks-center-form .field,
+.tasks-center-form div {
+  margin-bottom: 1rem;
+}
+
+.share-options {
+  gap: 2em;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.share-options .option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+  width: 100%;
+}

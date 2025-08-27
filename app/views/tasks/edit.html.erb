@@ -1,37 +1,97 @@
 <p>編集ページ</p>
 <%= form_with model:@task, url: task_path(@task) do |form| %>
 
-  <div>
-    <%= form.label :expired_at %><br>
-    <%= form.datetime_field :expired_at %>
-    <% if @task.errors.full_messages_for(:expired_at).any? %>
-    <ul>
-      <% @task.errors.full_messages_for(:expired_at).each do |message| %>
-      <li><%= message %>  
-      <% end %>
-    </ul>
-    <% end %>
-  </div>
+  <div class="container-fluid">
+  <button class="sidebar-toggle" type="button" aria-label="メニューを開く">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="row">
+    <!-- サイドバー -->
+    <nav class="col-md-2 custom-sidebar py-3" id="sidebar">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="sidebar-title">タスク一覧</li>
+          <li class="nav-item mb-2">
+            <%= link_to "To do一覧", tasks_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item mb-2">
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link text-danger" %>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-    <% if @task.errors.full_messages_for(:name).any? %>
-    <ul>
-      <% @task.errors.full_messages_for(:name).each do |message| %>
-      <li><%= message %>  
+<!-- メインコンテンツ -->
+<main class="col-md-8">
+  <div class="tasks-center-form">    
+    <div>
+      <%= form.label :expired_at %><br>
+      <%= form.datetime_field :expired_at %>
+        <% if @task.errors.full_messages_for(:expired_at).any? %>
+      <ul>
+        <% @task.errors.full_messages_for(:expired_at).each do |message| %>
+        <li><%= message %>  
+        <% end %>
+      </ul>
+        <% end %>
+    </div>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+      <% if @task.errors.full_messages_for(:name).any? %>
+      <ul>
+        <% @task.errors.full_messages_for(:name).each do |message| %>
+        <li><%= message %>  
+        <% end %>
+      </ul>
       <% end %>
-    </ul>
-    <% end %>
-  </div>
+    </div>
   
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>  
-  </div>
+    <div>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>  
+    </div>
+
+    <div class="field">
+      <%= form.label :priority, "優先度" %>
+      <%= form.select :priority, Task.priorities.keys.map { |p| [p.humanize, p] } %>
+    </div>
   
-  <div>
-    <%= form.submit "投稿を更新" %>
+    <div>
+      <%= form.submit "投稿を更新" %>
+    </div>
+
+    <div class="form-buttons">
+      <%= link_to "キャンセル", tasks_path, class: "btn btn-secondary ms-2" %>
+    </div>
+
+  <% end %>
+
+    
+  <% if @task.user == current_user %>
+    <div>
+      <%= form_with model: TaskShare.new, url: task_task_shares_path(@task), method: :post, local: true do |f| %>
+      <%= f.collection_select :user_id, User.where.not(id: current_user.id), :id, :email %>
+      <div class="share-options">
+        <div class="option">
+          <label>
+            <%= f.check_box :can_edit_priority %><br>
+            優先度を編集可
+          </label>
+        </div>
+        <div class="option">
+          <label>
+            <%= f.check_box :can_edit_comment %><br>
+            コメントを編集可
+          </label>
+        </div>
+      </div> 
+      <%= f.submit "共有する" %>
+      <% end %>
+    </div>
+  <% end %>
   </div>
-<% end %>
+</main>
 <%= link_to "To do一覧", tasks_path %>
